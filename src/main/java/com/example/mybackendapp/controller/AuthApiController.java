@@ -45,11 +45,11 @@ public class AuthApiController {
         String userNamePasswordEncryptValue = headerValue.replace("Basic ", "");
         byte[] userNamePasswordByteValue = Base64.decodeBase64(userNamePasswordEncryptValue);
         String userNamePasswordValue = new String(userNamePasswordByteValue);
-        if(!userNamePasswordValue.contains(";")){
+        if(!userNamePasswordValue.contains(":")){
             ResponseEntity.badRequest().build();
         }
 
-        String[] userNameAndPassword = userNamePasswordValue.split(";");
+        String[] userNameAndPassword = userNamePasswordValue.split(":");
         if(userNameAndPassword.length != 2){
             ResponseEntity.badRequest().build();
         }
