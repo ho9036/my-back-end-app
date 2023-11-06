@@ -41,7 +41,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
         // 전송받은 Jwt Token이 만료되었으면 => 다음 필터 진행(인증 X)
         if(JwtUtils.isExpired(token)) {
-
+            response.setStatus(401);
             filterChain.doFilter(request, response);
             return;
         }
